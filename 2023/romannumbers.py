@@ -1,4 +1,4 @@
-z = input("podaj liczbe po RZYMSKU: ")
+z = input("podaj liczbe po RZYMSKU (z duzych liter): ")
 
 I = 1
 V = 5
