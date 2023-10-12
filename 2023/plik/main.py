@@ -1,0 +1,5 @@
+plik = open("2023/plik/tekst.txt", "r")
+tekst = plik.read()
+a = tekst.split("AB")
+b = tekst.split("BA")
+print(len(a)+len(b)-2)
