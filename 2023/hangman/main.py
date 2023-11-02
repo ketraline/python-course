@@ -36,3 +36,4 @@ while tries != 0:
             print("wrong letters: ", wrongletters)
     if tries == 0:
         print("\nYOU LOSE")
+        print("the word was:",word)
