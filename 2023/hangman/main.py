@@ -1,34 +1,36 @@
 import random
-difficulty = input("would you like 7 letter or 10 letter words? type 7 or 10 ")
+import requests
+import json
 
-if difficulty == 10:
-    word = random.choice(open("2023/hangman/10letterwords.txt","r").read().split())
-else:
-    word = random.choice(open("2023/hangman/7letterwords.txt","r").read().split())
-    
-guessword = "_"*len(word)
-print(guessword)
+difficulty = input("how many letters? ")
+word = requests.get('https://random-word-api.herokuapp.com/word?length='+difficulty)
+word = json.loads(word.text)[0]
+
+guessword = list("_"*len(word))
+print(''.join(guessword))
 tries = int(len(word)/2+1)
 wrongletters = []
 
 while tries != 0:
     letter = input("\ninput a letter: ")
     if letter in word:
-        guessword = guessword[0:word.index(letter)] + letter + guessword[word.index(letter)+1:]
-        print(guessword)
+        for i in range(len(word)):
+                if word[i] == letter:
+                    guessword[i] = letter
+        print(''.join(guessword))
         print("remaining tries: ",tries)
         print("wrong letters: ", wrongletters)
-        if guessword == word:
+        if ''.join(guessword) == word:
             print("\nYOU WIN !!!!!!!!")
             break
     else:
         if letter in wrongletters:
-            print(guessword)
+            print(''.join(guessword))
             print("you've already guessed this letter. try a different one")
             print("remaining tries: ",tries)
             print("wrong letters: ", wrongletters)
         else:
-            print(guessword)
+            print(''.join(guessword))
             print("this letter isnt in the word")
             tries -= 1
             wrongletters += letter
