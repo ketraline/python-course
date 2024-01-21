@@ -20,6 +20,7 @@ for i in range(len(full)):
         print(full[j][i], end = "    ")
     print()
 
+print(zpl[3,3])
 # 1
 x = 0
 y = 0
@@ -35,4 +36,3 @@ while i < 150:
         else:
             y += 1
     i += 0 
-print(col0)
