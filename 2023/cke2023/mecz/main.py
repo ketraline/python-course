@@ -1,4 +1,4 @@
-plik = open("2023/cke2023/mecz_przyklad.txt", "r")
+plik = open("2023/cke2023/mecz/mecz_przyklad.txt", "r")
 tekst = plik.read()
 
 #1.1
