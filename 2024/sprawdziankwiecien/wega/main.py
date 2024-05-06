@@ -1,4 +1,4 @@
-plik = open("2024/sprawdziankwiecien/wega/sygnaly.txt", "r")
+plik = open("2024/sprawdziankwiecien/wega/przyklad_WEGA.txt", "r")
 signal = plik.read()
 
 #4.1
@@ -40,19 +40,14 @@ f.write(f"\n4.2: {count} {maxword}")
 
 #4.3
 wordlist = []
-i = 0
-distance = ""
-while i < 1000:
-    j=0
-    distance = slist[i]
-    distance.split()
-    k=len(distance)-1
-    if (ord(distance[j]) - ord(distance[k]) > 10) or (ord(distance[k]) - ord(distance[j]) > 10):
-        i+=1
-        break
-    else:
-        k -= 1  
-        wordlist.append(distance)  
 
+for i in range(len(slist)):  
+    for j in range(len(slist[i])):
+        litera = 0
+        for k in range(len(slist[i])):
+            if abs(ord(slist[i][j]) - ord(slist[i][k])) > 11:
+                litera+=1
+    if litera == 0:
+        wordlist.append(slist[i])
 print(wordlist)
 f.write(f"\n4.3: {wordlist}")
