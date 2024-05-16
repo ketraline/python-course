@@ -21,7 +21,7 @@ def can_travel_to(gameMatrix, currentx, currenty, x, y):
                 if gameMatrix[a][b] == True:
                     row += ". "
                 else:
-                    row += "X "
+                    row += "x "
             b+=1
         print(row)
         a+=1
