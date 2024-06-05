@@ -30,21 +30,24 @@ k2 = int(slowa[3])
 
 print(czy_mniejszy(n, s, k1, k2))
 
-# 2.3 broken
+# 2.3
 alfslowo = sorted(s)
 T = []
 i = 0
+while i < n:
+    T.append(0)
+    i+=1
 i = 0
 while i < n:
     suffix = s[i:]
     j = 0
-    index = 1
+    index = 0
     while j < n:
         if czy_mniejszy(n,s,j,i) == "TAK":
             index += 1
         j+=1
     print(suffix, index)
-    T.append(index)
+    T[index] = i+1
     i+=1
 print(T)
 
