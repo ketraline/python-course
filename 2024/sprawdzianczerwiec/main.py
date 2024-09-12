@@ -1,4 +1,4 @@
-file = open("przyklad.txt", "r")
+file = open("2024\sprawdzianczerwiec\\przyklad.txt", "r")
 anagram = file.read()
 anagram = anagram.split("\n")
 anagram.pop()
@@ -24,8 +24,9 @@ while i < len(anagram):
     elif abs(zera - jedynki) == 1:
         prown +=1
     i+=1
-
 print(rown, prown)
+file = open("wyniki1.txt","w")
+file.write(f"1.1 Zrownowazone: {rown} Prawie zrownowazone: {prown}")
 
 #1.2
 i = 0
@@ -51,106 +52,169 @@ while i < len(anagramy8):
         najwanagramy.append(anagramy8[i])
     i += 1
 print(najwanagramy)
+file.write(f"1.2 {najwanagramy}")
 
 #1.3
 i = 1
-decy = 0
 najwabs = 0
 liczba1=0
 while i < len(anagram):
     liczba = 0
-    decy = int(anagram[i])
-    while decy != 0:
-        liczba += liczba + decy % 10
-        decy = decy // 10
+    potega = 1
+    binarna = int(anagram[i])
+    while binarna != 0:
+        resz = binarna % 10
+        binarna = binarna // 10
+        liczba += resz*potega
+        potega = potega*2
     if najwabs < abs(liczba1 - liczba):
         najwabs = abs(liczba1 - liczba)
     liczba1 = liczba
     i+=1
 liczba = ""
 while najwabs != 0:
-    liczba += str(najwabs % 2)
+    liczba = liczba + str(najwabs % 2)
     najwabs = najwabs // 2
-i = len(str(liczba))-1
-binliczba = ""
-while i != 0:
-    binliczba += liczba[i]
-    i-=1
-print(binliczba)
+print(liczba[::-1])
+file.write(f"1.3 {liczba[::-1]}")
 
-#1.3
-i=0
-brakzero =0
+#1.4
+filedziewiec = open("liczby9.txt", "w")
+i = 0
+brakzero = 0
 liczby9 = []
 while i < len(anagram):
     liczba = 0
-    decy = int(anagram[i])
-    while decy != 0:
-        liczba += liczba + decy % 10
-        decy = decy // 10
-    dziewiatkowy = int(anagram[i])
-    while dziewiatkowy != 0:
-        liczba += liczba + decy % 9
-        dziewiatkowy = decy // 9
-    liczby9.append(liczba)
+    potega = 1
+    liczba9 = ""
+    binarna = int(anagram[i])
+    while binarna != 0:
+        resz = binarna % 10
+        binarna = binarna // 10
+        liczba += resz*potega
+        potega = potega*2
+    while liczba != 0:
+        resz = liczba % 9
+        liczba = liczba // 9
+        liczba9 = str(resz) + liczba9
+    filedziewiec.write(f"{str(liczba9)}\n")
     j = 0
-    while j < len(str(liczba)):
-        if str(liczba)[j] == 0:
+    while j < len(liczba9):
+        if liczba9[j] == "0":
             break
         else: j+=1
-    if j == len(str(liczba)):
+    if j == len(liczba9):
         brakzero +=1
-    i +=1
+    i += 1
 print(brakzero)
+file.write(f"1.3 {brakzero}")
+
 #----------------------
 #2
-file = open("szachy_przyklad.txt", "r")
-szachy = file.read()
+file = open("2024\sprawdzianczerwiec\szachy_przyklad.txt", "r")
+dane = []
+for i in file:
+    dane.append(i.strip())
+
+i = 0
+plansze = [[]]
+while i < len(dane):
+    row = dane[i]
+    if row == '':
+        plansze.append([])
+    else:
+        plansze[-1].append(row)
+    i += 1
+
+if plansze[-1] == []:
+    plansze.pop()
 
 #2.1
-i = 1
-a=0
-puste = 0
-wiersze = szachy.split("\n")
-while i < len(wiersze):
-    j = 0
-    k = 0
-    while k < 8:
-        while j < 8:
-            if wiersze[j][k] != ".":
-                break
-            else:
-                j += 1
-        if j == 8:
-            puste+=1
-        k += 1
-    i+=1
 
-print(puste)
+puste = []
+p=0
+while p < len(plansze):
+    plansza=plansze[p]
+    pustekolumny = 0
+    i=0
+    while i < len(plansza):
+        pusta=True
+        j=0
+        while j < len(plansza):
+            if plansza[j][i] != '.':
+                pusta=False
+                break
+            j+=1
+        if pusta == True:
+            pustekolumny += 1
+        i+=1
+    if pustekolumny > 0:
+        puste.append(pustekolumny)
+    p+=1
+
+file = open("wyniki1.txt","w")
+file.write(f"2.1 {len(puste)} {max(puste)}")
 
 #2.2
-i = 0
-rown = 0
-czbierki = 0
-bibierki = 0
-minbierek = 0
-j = 0
-while i < len(wiersze):
-    k = 0
-    while j < i+8:
-        while k < 8:
-            if wiersze[j][k] != ".":
-                if j < 4:
-                    czbierki +=1
-                else:
-                    bibierki +=1
-            k+=1
-        j+=1
-    if czbierki == bibierki:
-        rown += 1
-        if minbierek > (czbierki + bibierki):
-            minbierek = czbierki + bibierki
-    i+=8
-    j+=8
 
-print(rown, minbierek)
+bierki = ['k', 'w', 's', 'h', 'g', 'p']
+rownplansz = 0
+minbierek = 1000
+
+for plansza in plansze:
+    bierkinaplanszy = []
+    i = 0
+    while i < len(plansza):
+        j=0
+        while j < len(plansza):
+            if plansza[i][j] != '.':
+                bierkinaplanszy.append(plansza[i][j])
+            j += 1
+        i += 1
+
+    rownowaga = True
+    for bierka in bierki:
+        if bierkinaplanszy.count(bierka) != bierkinaplanszy.count(bierka.upper()):
+            rownowaga=False
+            break
+    if rownowaga == True:
+        rownplansz +=1
+        if minbierek > len(bierkinaplanszy):
+            minbierek = len(bierkinaplanszy)
+file.write(f"2.2. {rownplansz} {minbierek}")
+
+
+# 2.3
+
+szachb = 0
+szachcz = 0
+
+for plansza in plansze:
+    i=0
+    while i < len(plansza):
+        wiersz = ''.join(plansza[i])
+        wiersz = wiersz.replace('.', '')
+        characters = []
+        j=0
+        while j < len(plansza):
+            characters.append(plansza[j][i])
+            j+=1
+        kolumna = ''.join(characters).replace('.', '')
+
+        szachownica = [wiersz, kolumna]
+        szach = [('k', 'W'), ('K', 'w')]
+
+        for tekst in szachownica:
+            for k, w in szach:
+                if k in tekst and w in tekst:
+                    kindex = tekst.index(k)
+                    if kindex > 0 and tekst[kindex - 1] == w:
+                        if w == "W": szachb += 1 
+                        else: szachcz += 1
+                    elif kindex < len(tekst) - 1 and tekst[kindex + 1] == w:
+                        if w == "W": szachb += 1 
+                        else: szachcz += 1
+        i+=1
+
+file.write(f"2.3. {szachb} {szachcz}")
+

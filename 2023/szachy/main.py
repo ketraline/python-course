@@ -20,7 +20,6 @@ for i in range(len(full)):
         print(full[j][i], end = "    ")
     print()
 
-print(zpl[3,3])
 # 1
 x = 0
 y = 0
