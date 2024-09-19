@@ -18,23 +18,38 @@ count = 0
 for i in range(len(words)):
     if re.findall(r"k.t", words[i]) != []:
         count+=1
-print(count)
+print("1.1:", count)
 
-#2
+'''
+Alfabet angielski zawiera 26 liter. Kodowanie ROT13 zamienia każdą literę na literę, która
+jest na pozycji o 13 miejsc dalej w alfabecie (a→n, b→o itd.), przy czym po przekroczeniu „z”
+liczymy z powrotem od „a” (czyli m→z, ale n→a, o→b, i tak dalej).
+Słowo aren ma ciekawą własność – po zakodowaniu za pomocą ROT13 staje się słowem
+nera, czyli tym samym słowem czytanym od tyłu.
+Podaj, ile w pliku slowa.txt jest słów, które mają tę własność. Wypisz ich liczbę oraz
+najdłuższe z nich.
+'''
 count = 0
 maxword = ""
 rot13 = str.maketrans("abcdefghijklmnopqrstuvwxyz","nopqrstuvwxyzabcdefghijklm")
 for i in range(len(words)):
     word = words[i]
     rot13word = str.translate(word, rot13)
-    if word == ''.join(list(rot13word)[::-1]):
+    if word == ''.join(list(rot13word)[::-1]8):
         count += 1
         if len(maxword) < len(word):
             maxword = word
 
-print(count, maxword)
+print("1.2", count, maxword)
 
-#3 
+'''
+Zadanie 3.3. (0–3)
+Znajdź i wypisz z pliku slowa.txt wszystkie takie słowa, w których ta sama litera
+występuje na co najmniej połowie pozycji (przykładowo: w słowie "owocowo" litera „o” ma 4
+wystąpienia na ogólną liczbę 7 liter w słowie i spełnia podany warunek, za to w słowie
+"ambaras" litera „a” ma tylko 3 wystąpienia na 7 liter, więc nie spełnia podanego warunku).
+'''
+print("1.3")
 halfwords = []
 letter = 0
 for i in range(len(words)):
