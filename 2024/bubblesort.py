@@ -1,18 +1,6 @@
 lista = [5,2,3,6,4,1]
 lista2 = ['x', 'a', 'f']
-lista3 = [6,2,8,'a',3,'d','n',9,'z']
-
-def insertionsort(n):
-    i = 1
-    while i < len(n):
-        if n[i-1]>n[i]:
-            znak = n[i-1]
-            n.remove(znak)
-            n.append(znak)
-            i = 1
-        else:
-            i+=1
-    return(n)
+lista3 = [6,2,8,'a',34,'d','n',9,'z']
 
 def bubblesort(n):
     i = 1
