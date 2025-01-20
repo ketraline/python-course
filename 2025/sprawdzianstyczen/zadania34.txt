@@ -1,0 +1,16 @@
+## Zadanie 3:
+Kryptografia symetryczna:
+- posługuje się jednym kluczem do szyfrowania i odszyfrowywania. 
+- służy do np. szyfrowania danych na dysku lub w bazach danych.
+Kryptografia asymetryczna:
+- posługuje się dwoma kluczami: publiczny służący do szyfrowania i prywatny do odszyfrowywania. Klucz publiczny można udostępniać innym, a prywatny powinna posiadać tylko osoba, do której chcemy przekazać zakodowane dane. 
+- służy np. do kodowania wiadomości email.
+
+## Zadanie 4:
+Podpisy elektroniczne służą do uwierzytelniania tożsamości osoby. Mają podobne zastosowania do podpisów odręcznych.
+Podpis niekwalifikowany/niezaawansowany - mniej skomplikowany, nie ma mocy prawnych.
+Podpis kwalifikowany/zaawansowany - ma takie same moce jak podpis odręczny, jest rozpoznawany prawnie przez co jest bardziej skomplikowany w działaniu. Musi stosować się do pewnego regulaminu. Podtypem takiego podpisu są odreczne popisy elektroniczne, gdzie podpisuje się dokument na ekranie dotykowym, na przykład przy odbiorze paczki na poczcie.
+Są równiez 3 typy działania podpisu:
+- otoczony, czyli podpis jest zawarty w pliku
+- otaczający, czyli plik jest zawarty w podpisie
+- zewnętrzny, czyli podpis jest osobnym plikiem od dokumentu podpisanego
