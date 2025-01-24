@@ -1,4 +1,4 @@
-plik = open("2024/test/zad1/tablica.txt", "r")
+plik = open("tablica.txt", "r")
 tekst = plik.read()
 tablica = tekst
 
